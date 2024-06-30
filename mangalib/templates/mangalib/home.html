@@ -1,0 +1,52 @@
+{% load static %}
+{% load customtags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Mangas</title>
+    <link rel="stylesheet" href="{% static 'global.css' %}">
+    <link rel="stylesheet" href="{% static 'mangalib/css/style.css' %}">
+</head>
+<body>
+    <h1 style="color: #6992e9;">Bienvenue sur MangaLib !</h1>
+    <p>{{ message | upper }}</p>
+    <p>Nous sommes le {{ publication|date:"d/m/Y" }}</p>
+    <p>{{ d1|timesince:d2 }}</p>
+    <p>{{ text|truncatewords:2 }}</p>
+    <p>{{ numberNews }} actualité{{ numberNews|pluralize }}</p>
+    <p>{{ message|first_char }}</p>
+    <p>{{ message|lengthis:5 }}</p>
+    <p>{% hello_world nelson %}</p>
+    {% comment "Ce paragraphe ne doit pas etre affiche" %}
+        <p>Bonjour !</p>
+        {% debug %}
+    {% endcomment %}
+
+    {% lorem 5 w %}
+
+    {% now "l F d-m-Y H:i:s" %}
+    <h2>Contenu d'un autre fichier</h2>
+    {% include "mangalib/other.html" %}
+
+    <p>Rendez-vous sur <a href="{% url 'index' %}">MangaLib</a></p>
+    
+    {% if numberNews > 0 %}
+        <p>Des news sont disponibles !</p>
+    {% else %}
+        <p>Pas de news...</p>
+    {% endif %}
+
+    <h2>Liste des Users : </h2>
+    
+    {% for user in usersList %}
+        <p>{{ user }}</p>
+    {% empty %}
+        <p>Pas d'utilisateurs...</p>
+    {% endfor %} 
+
+     
+
+</body>
+</html>

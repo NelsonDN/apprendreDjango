@@ -1,0 +1,42 @@
+body{
+    background-color: rgba(21, 23, 24, 0.733);
+    color: white;
+    margin: auto;
+    width: 800px;
+}
+
+h1{
+    font-size: 40px;
+    color: #f72a2a;
+}
+
+a{
+    color: #ffffff;
+    font-size: 20px;
+}
+
+table, th, td{
+    border:1px solid #fc3b19;
+}
+table{
+    border-collapse: collapse;
+}
+thead tr td{
+    text-align: center;
+}
+
+th, td {
+    padding: 20px;
+    text-align: left;
+  }
+
+p{
+    background-color: transparent;
+}
+
+.edit{
+    color: #066bee;
+}
+.delete{
+    color: #f72a2a;
+}

@@ -1,0 +1,62 @@
+{% load static %}
+{% load customtags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Mangas</title>
+    <link rel="stylesheet" href="{% static 'global.css' %}">
+    <link rel="stylesheet" href="{% static 'mangalib/css/style.css' %}">
+</head>
+<body>
+    {% if perms.mangalib.delete_book %}
+        <p>Oui, c'est bon</p>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <p>Connecté sous {{ user.username }} | <a href="{% url 'accounts:logout_user' %}">Déconnexion</a></p>
+    {% else %}
+        <p><a href="{% url 'accounts:login_user' %}">Connexion</a> | <a href="{% url 'accounts:register_user' %}">Inscription</a></p>
+    {% endif %}
+
+    <h1>Bienvenue sur MangaLib !</h1>
+    <p><a href="{% url 'mangalib:add' %}">[+]Ajouter</a> | 
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <td>Nom</td>
+                <td>Auteur</td>
+                <td>QTE</td>
+                <td colspan="2">ACTIONS</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td><a href="{% url 'mangalib:show' book.id %}" style="color:rgb(140, 180, 241)">{{ book.title }}</a></td>
+                    <td>{{ book.author.name }}</td>
+                    <td>{{ book.quantity }}</td>
+                    <td>
+                        <a href="{% url 'mangalib:edit' book.id %}" class="edit">[e]Modifier</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'mangalib:delete' book.id %}" class="delete">[-]Supprimer</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <p>Pas de mangas..</p>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+
+    <!-- <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="ENVOYER">
+    </form> -->
+</body>
+</html>
+

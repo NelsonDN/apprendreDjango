@@ -1,0 +1,23 @@
+{% load static %}
+{% load customtags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Mangas</title>
+    <link rel="stylesheet" href="{% static 'global.css' %}">
+    <link rel="stylesheet" href="{% static 'mangalib/css/style.css' %}">
+</head>
+<body>
+    <h1 style="color: #6992e9;">Gestion de livre</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="ENVOYER">
+    </form>
+    
+</body>
+</html>
+
